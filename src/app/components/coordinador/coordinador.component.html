@@ -1,0 +1,361 @@
+
+<div class="container">
+  <div style="float:left;">
+      <h1 >Lista de registros</h1>
+  </div>
+  <div style="float:right;">
+      <h1><a routerLink="/reportes-excel" class="btn btn-danger">Ver Reportes</a></h1>
+  </div>
+  
+ 
+  <hr>
+  <br><br><br>
+  <tabset>
+      
+      <tab heading="Validado"  >
+          <br>     
+          <table  datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger1" >
+              <thead>
+                <tr>
+                  <th scope="col">Código de registro</th>
+                  <th scope="col">Trámite/Servicio/Otra Gestión</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>  
+              <tbody>
+                <tr *ngIf="loading">
+                    <td colspan="7" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                 </tr>
+                <tr *ngFor="let item of nuevosRegistros" >
+                  <td>{{item.codigo_registro}}</td>
+                  <td>{{item.nombre_tramite}}</td>
+                  <td>{{item.nombre_entidad}}</td>
+                  <td *ngIf="item.abreviatura_fase =='Por validar'">
+                  <span class="badge badge-success" style="background:green;" >
+                      {{item.abreviatura_fase}}</span>
+                  </td>
+                  <td *ngIf="item.abreviatura_fase =='Invalido'">
+                    <span class="badge badge-success" style="background:red;" >{{item.abreviatura_fase}}</span>
+                  </td>
+                  <td *ngIf="item.abreviatura_fase =='No Aceptado'">
+                      <span class="badge badge-success" style="background:#FF461E;" >{{item.abreviatura_fase}}</span> 
+                    </td>
+
+                  <td><a class="btn btn-danger">Archivo</a></td>
+                  <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                  <td><a routerLink="/detalleRegistroCoordinador/{{item.codigo_registro}}" class="btn btn-danger">Ver detalle</a></td>
+                  
+                </tr> 
+
+              </tbody>
+            </table>
+      </tab>
+   <!--   <tab heading="Clasificado" >
+          <br>
+          <table datatable  class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2">
+              <thead>
+                <tr>
+                  <th scope="col">Código de registro</th>
+                  <th scope="col">Trámite/Servicio/Otra Gestión</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="6" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                  <tr *ngFor="let item of registrosClasificados">
+                      <td>{{item.codigo_registro}}</td>
+                      <td>{{item.nombre_tramite}}</td>
+                      <td>{{item.nombre_entidad}}</td>
+                      <td *ngIf="item.abreviatura_fase == 'Por clasificar' ">
+                          <span class="badge badge-success" style="background:#FF461E;" >{{item.abreviatura_fase}}</span>
+                        </td>
+                      <td><a class="btn btn-danger">Archivo</a></td>
+                      <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                    </tr> 
+              </tbody>
+            </table>          
+      </tab> -->
+      <tab heading="Evaluado" >
+          <br>
+          <table datatable  class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger3">
+              <thead>
+                <tr>
+                  <th scope="col">Código de obstáculo</th>
+                  <th scope="col">Nombre de la Barrera</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha</th> 
+                  <th scope="col">Detalle</th> 
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="6" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                  <tr *ngFor="let item of registrosEvaluados">
+                      <td>{{item.codigo_obstaculo}}</td>
+                      <td>{{item.nombre_tramite}}</td>
+                      <td>{{item.nombre_entidad}}</td>
+                      <td *ngIf="item.abreviatura_fase == 'Evaluación 1' ">
+                        <span class="badge badge-success" style="background:#FF461E;" >{{item.abreviatura_fase}}</span>
+                      </td>
+                      <td><a class="btn btn-danger">Archivo</a></td>
+                      <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                      <td><a routerLink="/detalleCoordinadorEvaluado/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a></td>
+                    </tr> 
+               
+              </tbody>
+            </table>          
+      </tab>
+      <tab heading="Consultado Usuario" >
+          <br>
+          <table datatable  class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger4">
+              <thead>
+                <tr>
+                  <th scope="col">Código de registro</th>
+                  <th scope="col">Trámite/Servicio/Otra Gestión</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha de Envió</th>
+                  <th scope="col">Fecha de Respuesta</th>
+                  <th scope="col">Acción</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="8" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                  <tr *ngFor="let item of registrosConsultadoAdministrado">
+                      <td>{{item.codigo_registro}}</td>
+                      <td>{{item.nombre_tramite}}</td>
+                      <td>{{item.nombre_entidad}}</td>
+                      <td *ngIf="item.abreviatura_fase == 'En Espera' ">
+                          <span class="badge badge-success" style="background:#777;" >{{item.abreviatura_fase}}</span>
+                        </td>
+                        <td *ngIf="item.abreviatura_fase == 'Por consultar' ">
+                            <span class="badge badge-success" style="background:#D76D56;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                          <td *ngIf="item.abreviatura_fase == 'Respondido' ">
+                              <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                            </td>
+                      <td><a class="btn btn-danger">Archivo</a></td>
+                      <td>{{item.fecha_envio | date: 'dd/MM/yyyy'}}</td>
+                      <td>{{item.fecha_respuesta | date: 'dd/MM/yyyy'}}</td>
+                      <td><a routerLink="/detalleConsultadoAdministrado/{{item.codigo_registro}}" class="btn btn-danger">Ver detalle</a></td>
+                      
+                    </tr> 
+              </tbody>
+            </table>          
+      </tab>
+      <tab heading="Consultado Organismo" >
+          <br>
+          <table datatable  class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger5">
+              <thead>
+                  <tr>
+                      <th scope="col">Código de Barrera</th>
+                      <th scope="col">Nombre de la Barrera</th>
+                      <th scope="col">Entidad</th>
+                      <th scope="col">Fase</th>
+                      <th scope="col">Archivo</th>
+                      <th scope="col">Fecha de Envió</th>
+                      <th scope="col">Fecha de Respuesta</th>
+                      <th scope="col">Acción</th>
+    
+                    </tr>
+              </thead>
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="8" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                  <tr *ngFor="let item of registrosConsultadoBA">
+                      <td>{{item.codigo_obstaculo}}</td>
+                      <td>{{item.nombre_tramite}}</td>
+                      <td>{{item.nombre_entidad}}</td>
+                      <td *ngIf="item.abreviatura_fase == 'En Espera' ">
+                          <span class="badge badge-success" style="background:#777;" >{{item.abreviatura_fase}}</span>
+                        </td>
+                        <td *ngIf="item.abreviatura_fase == 'Por consultar' ">
+                            <span class="badge badge-success" style="background:#D76D56;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                          <td *ngIf="item.abreviatura_fase == 'Respondido' ">
+                              <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                            </td>
+                      <td><a class="btn btn-danger">Archivo</a></td>
+                      <td>{{item.fecha_envio | date: 'dd/MM/yyyy'}}</td>
+                      <td>{{item.fecha_respuesta | date: 'dd/MM/yyyy'}}</td>
+                      <td><a routerLink="/detalleConsultadoOrganismo/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a></td>
+                      
+                    </tr> 
+              </tbody>
+            </table>          
+      </tab>
+     <!-- <tab heading="Evaluado 2" >
+          <br>
+          <input type="text" placeholder="Buscar en los registros ..." class="form-control" style="float:right;width:200px">
+          <table class="table"  style="width:100%">
+              <thead>
+                <tr>
+                  <th scope="col">Código de registro</th>
+                  <th scope="col">Trámite/Servicio/Otra Gestión</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha</th> 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of registrosEvaluadosDOS">
+                  <td>{{item.codigo_registro}}</td>
+                  <td>{{item.nombre_tramite}}</td>
+                  <td>{{item.nombre_entidad}}</td>
+                  <td><span class="badge badge-primary">{{item.abreviatura_fase}}</span></td>
+                  <td><a class="btn btn-danger">Archivo</a></td>
+                  <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                </tr> 
+              </tbody>
+            </table>          
+      </tab> -->
+      <tab heading="Respuesta" >
+          <br>
+          <table datatable  class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger6">
+              <thead>
+                <tr>
+                  <th scope="col">Código de Barrera</th>
+                  <th scope="col">Nombre de la Barrera</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Acción</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="7" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                <tr *ngFor="let item of registrosRespuesta">
+                  <td>{{item.codigo_obstaculo}}</td>
+                  <td>{{item.nombre_tramite}}</td>
+                  <td>{{item.nombre_entidad}}</td>
+                  <td *ngIf="item.abreviatura_fase == 'Respuesta' ">
+                    <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                  </td>
+                  <td><a class="btn btn-danger">Archivo</a></td>
+                  <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                  <td><a routerLink="/detalleRespuestaCoordinador/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a></td>
+                  
+                </tr> 
+              </tbody>
+            </table>          
+      </tab>
+      <tab heading="Respuestas Enviadas" >
+        <br>
+        <table datatable  class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger7">
+            <thead>
+                <tr>
+                  <th scope="col">Código de Barrera</th>
+                  <th scope="col">Nombre de la Barrera</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Condición de la Barrera</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Acción</th>
+  
+                </tr>
+              </thead>
+
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="7" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                  <tr *ngFor="let item of listaRespuestasEnviadas">
+                    <td>{{item.codigo_obstaculo}}</td>
+                    <td>{{item.nombre_tramite}}</td>
+                    <td>{{item.nombre_entidad}}</td>
+                    <td *ngIf="item.abreviatura_fase == 'Concluido' ">
+                      <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                    </td>
+                    <td>{{item.nombre_condicion}}</td>
+                    <td><a class="btn btn-danger">Archivo</a></td>
+                    <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                    <td><a routerLink="/detalleRespuestaEnviadoCoordinador/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a></td>
+                    
+                  </tr> 
+                </tbody> 
+
+        </table>
+    </tab>
+
+    <tab heading="En proceso de superación" >
+      <br>
+      <table datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger8">
+          <thead>
+            <tr>
+              <th scope="col">Código de Barrera</th>
+              <th scope="col">Nombre de la Barrera</th>
+              <th scope="col">Entidad</th>
+              <th scope="col">Fecha </th>
+              <th scope="col">Dias Restante</th>
+              <th scope="col">Fase</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngIf="loading">
+                  <td colspan="5" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+               </tr>
+              <tr *ngFor="let item of listaProcesosSuperacion">
+                  <td>{{item.codigo_obstaculo}}</td>
+                  <td>{{item.nombre_obstaculo}}</td>
+                  <td>{{item.nombre_entidad}}</td>
+                  <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                  <td><span class="badge badge-warning" style="background:#FF6347;">{{item.Dias_Restantes}}</span></td>
+                  <td><span class="badge badge-primary">{{item.abreviatura_fase}}</span></td>
+                </tr> 
+          </tbody>
+        </table>          
+  </tab>
+  <tab heading="Superadas" >
+    <br>
+    <table datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger9">
+        <thead>
+          <tr>
+            <th scope="col">Código de Barrera</th>
+            <th scope="col">Nombre de la Barrera</th>
+            <th scope="col">Entidad</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Fase</th>
+          </tr>
+        </thead>
+      <tbody>
+            <tr *ngIf="loading">
+                <td colspan="5" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+             </tr>
+            <tr *ngFor="let item of listaSuperadas">
+              <td>{{item.codigo_obstaculo}}</td>
+              <td>{{item.nombre_obstaculo}}</td>
+              <td>{{item.nombre_entidad}}</td>
+              <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+              <td><span class="badge badge-primary">{{item.abreviatura_fase}}</span></td>
+              </tr> 
+        </tbody> 
+      </table>          
+</tab>
+  </tabset>
+
+</div>
+
+<br><br>

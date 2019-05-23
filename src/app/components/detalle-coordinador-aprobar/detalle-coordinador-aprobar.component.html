@@ -1,0 +1,287 @@
+<ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Cargando datos...
+            </h3>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading1" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<div class="container">
+    <div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Evaluador asignado</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-6 col-sm-6 col-sx-6">
+                                Evaluador asignado : Evaluador de SEBAS <strong>(Asignado por el sistema)</strong>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-sx-6">
+                                <select id="evaluadores" class="form-control" (change)="changeEvaluador($event)" [(ngModel)]="selectEvaluador" name="selectEvaluador">
+                                    <option [value]="item.id_empleado" *ngFor="let item of listaevaluadores">{{item.datos}} - {{item.correo}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Información de la Barrera</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row form-horizontal">
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Código de registro:</label>
+                                        <div class="col-md-10">
+                                            <input type="text" [(ngModel)]="codigoregistro" name="codigoregistro" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Trámite/Servicio/Otra gestión :</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="tramitedata" name="tramitedata" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Explicación :</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="explicaciondata" name="explicaciondata" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Descargar archivo :</label>
+                                        <div class="col-md-10">
+                                            <button type="button" class="btn btn-danger">Click aqui para descargar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Entidad :</label>
+                                        <div class="col-md-10">
+                                            <input type="text" [(ngModel)]="entidaddata" name="entidaddata" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" *ngIf="isProduceRegistro">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Órgano/Unidad Orgánica/Organismo/ Programa :</label>
+                                        <div class="col-md-10">
+                                            <input type="text" [(ngModel)]="organoData" name="organoData" class="form-control" [attr.disabled]="isDisabledOptionsOrgano">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4 col-sx-4">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Región :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" [(ngModel)]="regionData" name="regionData" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4 col-sx-4">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Provincia :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" [(ngModel)]="provinciaData" name="provinciaData" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4 col-sx-4">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Distrito :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" [(ngModel)]="distritoData" name="distritoData" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+            <p style="float:right;" *ngIf="direccion == false && interna_externa == 'P'">
+               <!-- <button class="btn btn-danger" (click)="derivar()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Derivar DGPAR o DGPAR</button> -->
+               <button class="btn btn-danger btn-lg"  data-toggle="modal" data-target="#myModal"><i class="fa fa-arrow-right"></i> Derivar DGPAR </button>
+            </p>
+            <p style="float:right;" *ngIf="direccion == true  ">
+                <!-- <button class="btn btn-danger" (click)="derivar()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Derivar DGPAR o DGPAR</button> -->
+                <button class="btn btn-danger btn-lg"  data-toggle="modal" data-target="#myModal"><i class="fa fa-arrow-right"></i> Derivar DGPARPA</button>
+             </p>
+             <p style="float:right;" *ngIf="direccion === null && interna_externa == 'E'">
+                <!-- <button class="btn btn-danger" (click)="derivar()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Derivar DGPAR o DGPAR</button> -->
+                <button class="btn btn-danger btn-lg"  data-toggle="modal" data-target="#myModal1"><i class="fa fa-arrow-right"></i> Derivar DGPAR y/o DGPARPA</button>
+             </p>
+             <p style="float:right;" *ngIf="direccion === null && interna_externa == 'P'">
+                <button class="btn btn-danger btn-lg"  data-toggle="modal" data-target="#myModal1"><i class="fa fa-arrow-right"></i> Derivar DGPAR y/o DGPARPA</button>
+             </p>
+            </div>
+            <br>
+            <br>
+            <div class="row" style="margin-top:20px;margin-bottom:20px">
+                <p style="text-align:center" *ngIf="habilitarAprobacion">
+                    <button class="btn btn-danger btn-lg" (click)="asignarEvaluadorFASEVALIDADO()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Validar registro o caso</button>
+                </p>
+            </div>
+        <div class="row" *ngIf="isRechazo">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default panelIdentificationRevisar">
+                    <div class="panel-heading clearfix">
+                        <i class="icon-calendar"></i>
+                        <h3 class="panel-title" style="color:#d43f3a;">Evaluador Rechazó el registro</h3>
+                    </div>
+                    <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-md-8 control-label">Sustento por el cual evaluador rechazo el registro :</label>
+                                    <div class="col-md-12" style="margin-top:20px;margin-bottom:20px;">
+                                        <textarea name="obstaculorespuesta" class="form-control" [(ngModel)]="sustentoNegado" name="sustentoNegado" rows="3" [disabled]="sustentoEvaluador"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p style="text-align:center">
+                                        <button class="btn btn-danger btn-lg" (click)="reasignarDerivacion()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Reasignar</button>
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="isValido">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default panelIdentificationRevisar">
+                    <div class="panel-heading clearfix">
+                        <i class="icon-calendar"></i>
+                        <h3 class="panel-title" style="color:#d43f3a;">Evaluador indicó que el registro es inválido</h3>
+                    </div>
+                    <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8 control-label">
+                                    <label>Motivos de Invalidez</label>
+                                    <p *ngFor="let item of detalleobstaculo">• {{item.nom_invalido}}</p>
+                                </div>
+                                <label class="col-md-8 control-label">Sustento por el cual evaluador indicó que el registro es inválido :</label>
+                                <div class="col-md-12" style="margin-top:20px;margin-bottom:20px;">
+                                    <textarea class="form-control" [(ngModel)]="sustentoNoValidado" name="sustentoNoValidado" rows="3" ></textarea>
+                                </div>
+                                <label class="col-md-4 control-label">Respuesta al usuario</label>
+                                <div class="col-md-12" style="margin-top:20px;margin-bottom:20px;">
+                                    <textarea class="form-control" [(ngModel)]="respuestaUsuarioInvalido" name="respuestaUsuarioInvalido" rows="3" ></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center">¿Aceptar el motivo de invalidez señalada por el evaluador?</h3>
+                                    <p style="text-align:center">
+                                        <label class="radio-inline">
+                                            <input type="radio" [(ngModel)]="aceptarInvalidez" name="aceptarInvalidez" value="1"> Si acepto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </label>
+                                        <label class="radio-inline" style="margin-left:13px">
+                                            <input type="radio" [(ngModel)]="aceptarInvalidez" name="aceptarInvalidez" value="0"> No acepto
+                                        </label>
+                                    </p>
+                                    <div class="row">
+                                        <p style="text-align:center">
+                                            <button class="btn btn-danger btn-lg" (click)="enviarVerificarValidez()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Enviar</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                  <form (submit)="derivarProduce()">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Derivar </h4>
+                </div>
+                <div class="modal-body">
+                              
+                              <div class="col-lg-12 col-sm-12 col-sx-12"  >
+                                    <label class="col-md-12 control-label">Órgano/Unidad Orgánica/Organismo/Programa :</label> 
+                                    <div class="form-group" >
+                                       <div class="col-md-12">
+                                          <div class="styled-select clearfix">
+                                             <select2  class="wide required" 
+                                             [options]="optionsSelect2Organos"
+                                             [data]="organos"
+                                             [cssImport]=true 
+                                             (valueChanged)="changeOfOrganosModal($event)"  >
+                                             </select2>  
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <br><br>
+                </div>
+                <div class="modal-footer" style="margin-top:20px;">
+                 <!-- <button type="button" class="btn btn-danger" (click)="derivar()">Enviar</button> -->
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                 <button type="submit" class="btn btn-danger">Enviar</button>
+                </div>
+            </form>
+            </div>
+            </div>
+            </div>
+
+            <div class="modal fade" id="myModal1" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <form (submit)="derivar()">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Derivar </h4>
+                    </div>
+                    <div class="modal-body">
+                                  
+                                  <div class="col-lg-12 col-sm-12 col-sx-12"  >
+                                        <label class="col-md-12 control-label">Órgano/Unidad Orgánica/Organismo/Programa :</label> 
+                                        <div class="form-group" >
+                                           <div class="col-md-12">
+                                              <div class="styled-select clearfix">
+                                                 <select2  class="wide required" 
+                                                 [options]="optionsSelect2OrganosProduce"
+                                                 [data]="organosProduce"
+                                                 [cssImport]=true 
+                                                 (valueChanged)="changeOfOrganosModalProduce($event)"  >
+                                                 </select2>  
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                     <br><br>
+                    </div>
+                    <div class="modal-footer" style="margin-top:20px;">
+                     <!-- <button type="button" class="btn btn-danger" (click)="derivar()">Enviar</button> -->
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                     <button type="submit" class="btn btn-danger">Enviar</button>
+                    </div>
+                </form>
+                </div>
+                </div>
+                </div>
+    </div>
+</div>
+

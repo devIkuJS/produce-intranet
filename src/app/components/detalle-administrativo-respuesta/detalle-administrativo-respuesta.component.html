@@ -1,0 +1,98 @@
+<ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Cargando datos...
+            </h3>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading1" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<div class="container">
+    <form (submit)="guardarRespuesta()">
+  <div class="row">
+    
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Cuando llegan respuestas de las barreras</h3>
+                        </div>
+                        <div class="panel-body">
+        
+                          <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Fecha de Respuesta:</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" placement="right" [(ngModel)]="fecharespuesta" name="respuesta">
+                                </div>
+                            </div>
+                        </div>
+        
+                            <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tipo de documento con que se emitió la respuesta :</label>
+                                    <div class="col-md-7">
+                                            <select class="form-control"  (change)="changeOfTipoDocumento($event)">
+                                                    <option [value]="-1">Seleccione</option>
+                                                       <option [value]="item.id_tipo_doc" *ngFor="let item of tiposDocumento">{{item.nombre_tipo_doc}}</option>
+                                                     </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Numero de documento de remisión:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" [(ngModel)]="numdocremision" name="numdocremision" class="form-control" placeholder="01-2019-PRODUCE/DEVMYPE-I/DGPAR">
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;margin-bottom:40px;">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">¿Aceptar?:</label>
+                                    <div class="col-md-7">
+                                            <div>
+                                                    <label class="radio-inline">
+                                                 <input type="radio" value="1" [(ngModel)]="aceptar" name="aceptar"> Si &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                 <input type="radio" value="0" [(ngModel)]="aceptar" name="aceptar"> No &nbsp;&nbsp;
+                                                    </label>
+                                                 </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                              <div class="form-group">
+                                  <label class="col-md-3 control-label">Condición de BA identificada (listado):</label>
+                                  <div class="col-md-7">
+                                        <div>
+                                                <label class="radio-inline" *ngFor="let item of listaCondicionBA">
+                                                   
+                                                <input type="radio" value="{{item.id_condicion}}" [(ngModel)]="condicionBA" name="condicionBA"  >{{item.nombre_condicion}}
+                                            
+                                                </label>
+                                             </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Sustento de condicion de la BA:</label>
+                                <div class="col-md-7">
+                                  <textarea [(ngModel)]="sustentocondicion" name="sustentocondicion" class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+  
+            </div>
+
+  <div class="row" style="margin-top:20px;margin-bottom:20px">
+     <p style="text-align:center">
+        <button class="btn btn-danger btn-lg" type="submit"  ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar cambios</button>
+     </p>
+  </div>
+</form>
+</div>
+

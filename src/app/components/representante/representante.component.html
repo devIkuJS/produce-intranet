@@ -1,0 +1,150 @@
+<div class="container">
+
+    <h1>Lista de registros</h1>
+    <hr>
+    <tabset>
+        <tab heading="Consultado" >
+            <br>
+            <table datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger1">
+                <thead>
+                  <tr>
+                    <th scope="col">Código de Barrera</th>
+                    <th scope="col">Nombre de la Barrera</th>
+                    <th scope="col">Entidad</th>
+                    <th scope="col">Fase</th>
+                    <th scope="col">Archivo</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="loading">
+                        <td colspan="7" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                     </tr>
+                    <tr *ngFor="let item of listaRegistros">
+                      <td>{{item.codigo_obstaculo}}</td>
+                      <td>{{item.nombre_obstaculo}}</td>
+                      <td>{{item.nombre_entidad}}</td>
+                      <td *ngIf="item.abreviatura_fase == 'Barrera' ">
+                          <span class="badge badge-success" style="background:#EC6C50;" >{{item.abreviatura_fase}}</span>
+                        </td>
+                        <td *ngIf="item.abreviatura_fase == 'En Espera' ">
+                          <span class="badge badge-success" style="background:#777;" >{{item.abreviatura_fase}}</span>
+                        </td>
+                      <td><button class="btn btn-danger">Archivo</button></td>
+                      <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                      <td>
+                        <a routerLink="/detalleRegistroRepresentante/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>          
+        </tab>
+        <tab heading="Respuesta" >
+            <br>
+            <table datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2">
+                <thead>
+                  <tr>
+                    <th scope="col">Código de Barrera</th>
+                    <th scope="col">Nombre de la Barrera</th>
+                    <th scope="col">Entidad</th>
+                    <th scope="col">Fase</th>
+                    <th scope="col">Archivo</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="loading">
+                        <td colspan="7" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                     </tr>
+                    <tr *ngFor="let item of listaRegistros2">
+                        <td>{{item.codigo_registro}}</td>
+                        <td>{{item.nombre_obstaculo}}</td>
+                        <td>{{item.nombre_entidad}}</td>
+                        <td *ngIf="item.abreviatura_fase == 'Evaluar Barrera' ">
+                            <span class="badge badge-success" style="background:#EC6C50;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                          <td *ngIf="item.abreviatura_fase == 'Barrera' ">
+                            <span class="badge badge-success" style="background:#EC6C50;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                          <td *ngIf="item.abreviatura_fase == 'Respondido' ">
+                            <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                          <td *ngIf="item.abreviatura_fase == 'Concluido' ">
+                            <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                          <td *ngIf="item.abreviatura_fase == 'Respuesta' ">
+                            <span class="badge badge-success" style="background:green;" >{{item.abreviatura_fase}}</span>
+                          </td>
+                        <td>
+                          <button class="btn btn-danger">Archivo</button>
+                        </td>
+                        <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                        <td>
+                          <a routerLink="/detalleRespuestaRepresentante/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a>
+                        </td>
+                      </tr>
+                </tbody>
+              </table>          
+        </tab>
+        <tab heading="En proceso de superación" >
+          <br>
+          <table datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger3">
+              <thead>
+                <tr>
+                  <th scope="col">Código de Barrera</th>
+                  <th scope="col">Nombre de la Barrera</th>
+                  <th scope="col">Entidad</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Dias restante</th>
+                  <th scope="col">Fase</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngIf="loading">
+                      <td colspan="5" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                   </tr>
+                  <tr *ngFor="let item of listaRegistros3">
+                      <td>{{item.codigo_obstaculo}}</td>
+                      <td>{{item.nombre_obstaculo}}</td>
+                      <td>{{item.nombre_entidad}}</td>
+                      <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                      <td><span class="badge badge-warning" style="background:#FF6347;">{{item.Dias_Restantes}}</span></td>
+                      <td><span class="badge badge-primary">{{item.abreviatura_fase}}</span></td>
+                    </tr>
+              </tbody>
+            </table>          
+      </tab>
+
+      <tab heading="Superadas" >
+        <br>
+        <table datatable class="table"  style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger4">
+            <thead>
+              <tr>
+                <th scope="col">Código de Barrera</th>
+                <th scope="col">Nombre de la Barrera</th>
+                <th scope="col">Entidad</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Fase</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="loading">
+                    <td colspan="5" style="text-align:center;" > <img src="assets/imagenes/loader-service.gif" /></td>
+                 </tr>
+                <tr *ngFor="let item of listaRegistros4">
+                    <td>{{item.codigo_obstaculo}}</td>
+                    <td>{{item.nombre_obstaculo}}</td>
+                    <td>{{item.nombre_entidad}}</td>
+                    <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                    <td><span class="badge badge-primary">{{item.abreviatura_fase}}</span></td>
+                  </tr>
+            </tbody>
+          </table>          
+    </tab>
+    </tabset>
+  
+  </div>
+  
+  <br><br>

@@ -1,0 +1,351 @@
+<ng-template #customLoadingTemplate>
+        <div class="custom-class">
+           <h3>
+              Cargando datos...
+           </h3>
+        </div>
+     </ng-template>
+     <ngx-loading [show]="loading1" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+     <div class="container">
+        <div id="showAlertTrabaResponse"></div>
+        <div class="row">
+           <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="panel panel-default panelIdentificationRevisar">
+                 <div class="panel-heading clearfix">
+                    <i class="icon-calendar"></i>
+                    <h3 class="panel-title">Información Principal</h3>
+                 </div>
+                 <div class="panel-body">
+                    <div class="row form-horizontal">
+                       <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                             <label class="col-md-2 control-label">Código de registro:</label>
+                             <div class="col-md-10">
+                                <input type="text" [(ngModel)]="codigoregistro" name="codigoregistro" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                             <label class="col-md-2 control-label">Trámite/Servicio/Otra gestión :</label>
+                             <div class="col-md-10">
+                                <div class="styled-select clearfix">
+                                   <textarea [(ngModel)]="tramiteusuario" name="tramiteusuario" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                             <label class="col-md-2 control-label">Explicación :</label>
+                             <div class="col-md-10">
+                                <textarea [(ngModel)]="explicaciondata" name="explicaciondata" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                             <label class="col-md-2 control-label">Descargar archivo :</label>
+                             <div class="col-md-10">
+                                <button type="button" class="btn btn-danger">Click aqui para descargar</button>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                             <label class="col-md-2 control-label">Entidad :</label>
+                             <div class="col-md-10">
+                                <div class="styled-select clearfix">
+                                   <input type="text"  [(ngModel)]="entidadusuario" name="entidadusuario" class="form-control"  readonly [disabled]="isDisabledOptions" />
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-12 col-sm-12 col-sx-12" *ngIf="isProduceRegistro">
+                          <div class="form-group">
+                             <label class="col-md-2 control-label">Organo-Unidad Orgánica/Organismo
+                             <br>/Programa :</label>
+                             <div class="col-md-10">
+                                <div class="styled-select clearfix">
+                                   <input type="text"  [(ngModel)]="organousuario" name="organousuario" class="form-control"  readonly [disabled]="isDisabledOptionsOrgano" />
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-4 col-sm-4 col-sx-4">
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Región :</label>
+                             <div class="col-md-8">
+                                <input type="text" [(ngModel)]="regionusuario" name="regionusuario" class="form-control" readonly  [attr.disabled]="isDisabledOptions">
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-4 col-sm-4 col-sx-4">
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Provincia :</label>
+                             <div class="col-md-8">
+                                <input type="text" [(ngModel)]="provinciausuario" name="provinciausuario" class="form-control" readonly  [attr.disabled]="isDisabledOptions">
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-lg-4 col-sm-4 col-sx-4">
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Distrito :</label>
+                             <div class="col-md-8">
+                                <input type="text" [(ngModel)]="distritousuario" name="distritousuario" class="form-control" readonly  [attr.disabled]="isDisabledOptions">
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="row" *ngIf="derivacion">
+           <h3 style="text-align:center">¿Confirma la derivación del registro?</h3>
+           <p style="text-align:center">
+              <label class="radio-inline" >
+              <input (click)="onChangeRadioConfirmar(1)" type="radio" [(ngModel)]="aceptacion" name="aceptacion" value="1" > Si acepto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </label>
+              <label class="radio-inline" style="margin-left:13px">
+              <input (click)="onChangeRadioConfirmar(0)" type="radio" [(ngModel)]="aceptacion" name="aceptacion" value="0" [disabled]="disabled1" > No acepto
+              </label>
+           </p>
+           <form (submit)="enviarDerivacionCancelada()" *ngIf="noaceptaDerivacion">
+           <textarea  class="form-control" cols="10" rows="5" placeholder="Ingrese su sustento para no aceptar la derivación" [(ngModel)]="sustentonegacion" name="sustentonegacion"></textarea>
+           <div class="row" style="margin-top:20px;margin-bottom:20px">
+              <p style="text-align:center">
+                 <button class="btn btn-danger btn-lg" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar cambios</button> 
+              </p>
+           </div>
+           </form>
+        </div>
+        <div class="row" *ngIf="isValido">
+           <h3 style="text-align:center">¿El registro es válido?</h3>
+           <p style="text-align:center">
+              <label class="radio-inline" >
+              <input (click)="onChangeRadioValidar(1)" type="radio" [(ngModel)]="validacion" name="validacion" value="1" > Si &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </label>
+              <label class="radio-inline" style="margin-left:13px">
+              <input (click)="onChangeRadioValidar(0)" type="radio" [(ngModel)]="validacion" name="validacion" value="0" [disabled]="disabledValidacion" > No
+              </label>
+           </p>
+           <form (submit)="enviarValidacionCancelada()" *ngIf="noaceptaValidacion">
+           <h4 style="margin-bottom:20px;">Señale motivo de invalidez: </h4>
+           <div style="margin-bottom:20px;">
+              <label class="checkbox-inline" *ngFor="let item of listaMotivosInvalidez">
+              <input type="checkbox" value="{{item.id_invalido}}" (change)="onCheckboxChange(item,$event)">{{item.nom_invalido}}
+              </label>
+           </div>
+           <textarea  class="form-control" cols="10" rows="5" placeholder="Ingrese el sustento porque el registro del caso es inválido" [(ngModel)]="validacionnegacion" name="validacionnegacion" style="margin-bottom:20px;"></textarea>
+           <textarea  class="form-control" cols="10" rows="5" placeholder="Ingrese la respuesta al usuario" [(ngModel)]="respuestausuario" name="respuestausuario" ></textarea>
+           <div class="row" style="margin-top:20px;margin-bottom:20px">
+              <p style="text-align:center">
+                 <button class="btn btn-danger btn-lg" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Enviar a Coordinador</button> 
+              </p>
+           </div>
+           </form>
+        </div>
+        <br>
+        <div class="row" *ngIf="registroAceptadoInterno">
+           <div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-3">
+              <div class="panel panel-default panelIdentificationRevisar">
+                 <div class="panel-heading clearfix">
+                    <i class="icon-calendar"></i>
+                    <h3 class="panel-title">Para proceso de evaluación</h3>
+                 </div>
+                 <div class="panel-body">
+                    <div class="row form-horizontal">
+                       <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                             <label class="col-md-6 control-label">Requiere mayor información :</label>
+                             <div class="col-md-6">
+                                <p style="text-align:left">
+                                   <label class="radio-inline" >
+                                   <input (click)="onChangerequiere(1)" type="radio" [(ngModel)]="requiereData" name="requiereData" value="1"> Si &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </label>
+                                   <label class="radio-inline" style="margin-left:13px">
+                                   <input (click)="onChangerequiere(0)" type="radio" [(ngModel)]="requiereData" name="requiereData" value="0"> No
+                                   </label>
+                                </p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="row" *ngIf="isRequerido">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                 <div class="panel panel-default panelIdentificationRevisar">
+                    <div class="panel-heading clearfix">
+                       <i class="icon-calendar"></i>
+                       <h3 class="panel-title">Ingresar Consultas para mayor información</h3>
+                    </div>
+                    <div class="panel-body">
+                       <div class="row">
+                          <form (submit)="enviarINFOMayorInformacion()">
+                             <div class="col-lg-12 col-sm-12">
+                                <div class="form-group row"  style="margin-bottom:0px" >
+                                   <br>
+                                   <div class="form-group" style="margin-left:32%;">
+                                      <label class="col-md-2 control-label">Seleccione :</label>
+                                      <div>
+                                         <p>
+                                            <label class="radio-inline" >
+                                            <input  type="radio"  name="tipousuario" value="1" [(ngModel)]="tipousuario"  > Usuario
+                                            </label>
+                                         </p>
+                                      </div>
+                                   </div>
+                                   <div class="col-md-6" style="margin-left:22%;">
+                                      <div class="input-group">
+                                         <span class="input-group-addon"><i class="fa fa-comments" aria-hidden="true"></i></span>
+                                         <textarea [(ngModel)]="obstaculoconsulta"  name="obstaculoconsulta" class="form-control" placeholder="Ingrese alguna consulta" rows="3" ></textarea>
+                                      </div>
+                                   </div>
+                                   <div class="col-md-12" style="margin-top:30px;margin-bottom:30px;">                             
+                                      <textarea [(ngModel)]="obstaculorespuesta"  name="obstaculorespuesta" class="form-control" placeholder="Respuesta del usuario , órgano , organismo o programa" rows="3" disabled ></textarea>
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="row" style="margin-top:20px;margin-bottom:20px">
+                                <p style="text-align:center">
+                                   <button class="btn btn-danger btn-lg" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Enviar Consulta al Coordinador</button> 
+                                </p>
+                             </div>
+                          </form>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div >
+              <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="caracteristicasTramite">
+                 <div class="panel panel-default panelIdentificationRevisar">
+                    <div class="panel-heading clearfix">
+                       <i class="icon-calendar"></i>
+                       <h3 class="panel-title">1era Evaluación</h3>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                       <div class="form-group">
+                          <label class="col-md-2 control-label">Trámite/Servicio<br>/gestión/materia :</label>
+                          <div class="col-md-10">
+                             <div class="styled-select clearfix">
+                                <select2  class="wide required" 
+                                [options]="optionsSelect2Tramites"
+                                [data]="tramites"
+                                [cssImport]=true 
+                                (valueChanged)="changeOfTramites($event)" [disabled]="disabledTramite" >
+                                </select2>  
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-sx-4" style="margin-top:25px;">
+                       <div class="form-group">
+                          <label class="col-md-4 control-label">Condición de trámite :</label>
+                          <div class="col-md-8">
+                             <select2  class="wide required" 
+                             [options]="optionsSelect2CondicionTramite"
+                             [data]="condicionTramite"
+                             [cssImport]=true 
+                             (valueChanged)="changeOfCondicionTramite($event)" 
+                             [disabled]="disabledTramite">
+                             </select2> 
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-sx-4" style="margin-top:25px;">
+                       <div class="form-group">
+                          <label class="col-md-4 control-label">Tiempo :</label>
+                          <div class="col-md-8">
+                             <div class="styled-select clearfix">
+                                <select2  class="wide required" 
+                                [options]="optionsSelect2TiempoTramite"
+                                [data]="tiempoTramite"
+                                [cssImport]=true 
+                                (valueChanged)="changeOfTiempoTramite($event)" 
+                                [disabled]="disabledTramite">
+                                </select2> 
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-sx-4" style="margin-top:25px;">
+                       <div class="form-group">
+                          <label class="col-md-4 control-label">Costo del trámite :</label>
+                          <div class="col-md-8">
+                             <select2  class="wide required" 
+                             [options]="optionsSelect2CostoTramite"
+                             [data]="costoTramite"
+                             [cssImport]=true 
+                             (valueChanged)="changeOfCostoTramite($event)" 
+                             [disabled]="disabledTramite">
+                             </select2> 
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                       <div class="form-group">
+                          <label class="col-md-2 control-label">Requisitos:</label>
+                          <div class="col-md-10">
+                             <select2  class="wide required" 
+                             [data]="requisitoTramite"
+                             [options]="optionsSelect2RequisitoTramite"
+                             (valueChanged)="changeOfRequisitoTramite($event)" 
+                             [disabled]="disabledTramite">
+                             </select2> 
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                       <div class="form-group">
+                          <label class="col-md-2 control-label">Gestión:</label>
+                          <div class="col-md-10">
+                             <select2  class="wide required" 
+                             [data]="gestionTramite"
+                             [options]="optionsSelect2GestionTramite"
+                             (valueChanged)="changeOfGestionTramite($event)" 
+                             [disabled]="disabledTramite">
+                             </select2> 
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;margin-bottom:25px;">
+                       <div class="form-group">
+                          <label class="col-md-2 control-label">Otros:</label>
+                          <div class="col-md-10">
+                             <select2  class="wide required" 
+                             [data]="otrosTramite"
+                             [options]="optionsSelect2otrosTramite"
+                             (valueChanged)="changeOfOtrosTramite($event)" 
+                             [disabled]="disabledTramite">
+                             </select2> 
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <p style="text-align:center">
+                    <button class="btn btn-danger btn-lg" type="button" (click)="addToBarrera(item)"><i class="fa fa-floppy-o" aria-hidden="true" ></i> Agregar</button>
+                 </p>
+              </div>
+              <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                 <div *ngIf="TablaAntesDeGuardar">
+                    <table class="table table-bordered" *ngFor= "let item of registroSecond; let i = index" id="index">
+                       <tr style="background:#d43f3a;color:#fff;">
+                          <td colspan="5" style="text-align:center;" > {{i+1}} . {{item.descripcionTramite}}</td>
+                       </tr>
+                       <tr *ngFor="let item1 of item.obstaculoTramite">
+                          <td> {{item1.count}} .  {{item1.tramite}}</td>
+                          <td><button (click)="eliminarCelda(item.idtramite,item1.id)">Eliminar</button></td>
+                       </tr>
+                    </table>
+                 </div>
+                 <p style="text-align:center" *ngIf="registroSecond.length > 0"> 
+                    <button class="btn btn-danger btn-lg" type="button"  (click)="registrarBarreras()"><i class="fa fa-floppy-o" aria-hidden="true" ></i> Guardar Barrera(s)</button> 
+                 </p>
+              </div>
+           </div>
+        </div>
+     </div>

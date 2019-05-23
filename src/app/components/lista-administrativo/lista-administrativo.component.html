@@ -1,0 +1,149 @@
+<div class="container">
+  
+      <h1>Seguimiento externo</h1>
+      <hr>
+      
+  
+      
+        <tabset>
+            <tab heading="Por Remitir" >
+                <br><br>
+
+                 <div id="ocultar">
+                <div class="form-group" style="width:70%;">
+                  <label for="sel1">Busqueda por entidad:</label>
+                  <select class="form-control" id="sel1" (change)="recargaData($event)">
+                      <option [value]="-1">Seleccione</option>
+                      <option [value]="item.id_entidad" *ngFor="let item of entidadesExternas">{{item.nombre_entidad}}</option>
+                  </select>
+                </div>
+                <br><br>
+  
+                <table #dataTable  class="table"  style="width:100%"></table>
+
+                <div class="row" style="margin-top:20px;margin-bottom:20px">
+                  <p style="text-align:center">
+                     <button class="btn btn-danger btn-lg" (click)="enviarData()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Siguiente</button> 
+                  </p>
+               </div>
+              </div>
+              
+  
+      <br>
+      <br>
+      <div>
+
+      <div class="row" *ngIf="isPorRemitir">
+
+          <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="panel panel-default panelIdentificationRevisar">
+                  <div class="panel-heading clearfix">
+                      <i class="icon-calendar"></i>
+                      <h3 class="panel-title">Consulta a la dependencia</h3>
+                  </div>
+                  <div class="panel-body">
+  
+                      <div class="col-lg-12 col-sm-12 col-sx-12">
+                          <div class="form-group">
+                              <label class="col-md-2 control-label">Codigo de seguimiento SITRADOC:</label>
+                              <div class="col-md-10">
+                                  <input type="text" [(ngModel)]="codsitradoc" name="codsitradoc" class="form-control" placeholder="Ingrese el codigo de SITRADOC">
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;">
+                          <div class="form-group">
+                              <label class="col-md-3 control-label">Tipo de documento con que se va remitir posibles BA :</label>
+                              <div class="col-md-7">
+                                  <select class="form-control"  (change)="changeOfTipoDocumento($event)">
+                                      <option [value]="-1">Seleccione</option>
+                                         <option [value]="item.id_tipo_doc" *ngFor="let item of tiposDocumento">{{item.nombre_tipo_doc}}</option>
+                                       </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;margin-bottom:40px;">
+                          <div class="form-group">
+                              <label class="col-md-3 control-label">Numero de documento de remisión:</label>
+                              <div class="col-md-9">
+                                  <input type="text" [(ngModel)]="numdocremision" name="numdocremision" class="form-control" placeholder="01-2019-PRODUCE/DEVMYPE-I/DGPAR">
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;">
+                          <div class="form-group">
+                              <label class="col-md-3 control-label">Fecha de Remisión:</label>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" placement="right" [(ngModel)]="diaSeleccionado" name="diaSeleccionado">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-sm-6 col-sx-6" style="margin-top:25px;">
+                          <div class="form-group">
+                              <label class="col-md-3 control-label">Región:</label>
+                              <div class="col-md-9">
+                                  <div class="styled-select clearfix">
+                                      <select2 class="wide required" 
+                                      [options]="optionsSelect2Region" 
+                                      [data]="regiones" 
+                                      [cssImport]=true 
+                                      (valueChanged)="changeOfRegion($event)">
+                                      </select2>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                     
+  
+                  </div>
+              </div>
+          </div>
+
+          <table class="table" *ngIf="tablaVista">
+                  <thead>
+                    <tr>
+                      <th scope="col">Codigo</th>
+                      <th scope="col">Nombre de Entidad</th>
+                      <th scope="col">Barrera</th>
+                      <th scope="col">Detalle del caso</th>
+                      <th scope="col">Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of tablaDataGuardado">
+                      <td>{{item[1]}}</td>
+                      <td>{{item[2]}}</td>
+                      <td>{{item[3]}}</td>
+                      <td>{{item[4]}}</td>
+                      <td>{{item[5]}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+          <p style="text-align:center">
+                  <button class="btn btn-danger btn-lg" (click)="retroceder()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Atrás</button>
+                  &nbsp; &nbsp; &nbsp;
+                  <button class="btn btn-danger btn-lg" (click)="guardarSolucion()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Finalizar</button> 
+               </p>
+             <!-- <p style="text-align:center">
+                  <button class="btn btn-danger btn-lg" (click)="guardarSolucion()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Finalizar</button> 
+               </p> -->
+      </div>
+  </div>
+  
+      </tab>
+  
+      <!-- RESPUESTA -->
+      
+
+      
+  
+      </tabset>
+  
+  </div>
+  
+  <br>
+  <br>

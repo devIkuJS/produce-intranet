@@ -1,0 +1,33 @@
+
+.panelIdentificationRevisar{
+    font-family: "WorkSans-Regular", Helvetica, Arial, sans-serif;
+}
+
+.control-label{
+    text-align: left;
+}
+
+textarea {
+    resize: none;
+}
+
+.alertTrabaStatus{
+    font-family: "WorkSans-Regular", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.contentRadioJustificacion{
+    text-align: left;
+}
+
+.contentRadioAmbito{
+    text-align: left;
+}
+
+#btnDownloadDataEvaluador{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.contentTrabasStandBY{
+
+}

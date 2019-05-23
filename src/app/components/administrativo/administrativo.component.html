@@ -1,0 +1,97 @@
+<div class="container">
+        
+            <h1>Seguimiento externo</h1>
+            <hr>
+        
+            <tabset>
+                <tab heading="Por Remitir">
+                    <br>
+                    <br>
+                    <br> Para ver los registros por remitir , haga clic <a routerLink="/listaAdministrativo" class="btn btn-link" style="color:#d9534f">Aquí</a>
+        
+                    <div>
+                    </div>
+        
+                </tab>
+        
+                <!-- RESPUESTA -->
+                <br><br>
+                <tab heading="Respuesta">
+                        <div class="row" style="margin-left:2px;">
+                                <div class="form-inline" >
+                                    <div class="form-group">
+                                      <label>Fecha mínima:</label>&nbsp;
+                                      <input name="min" id="min" type="text" autocomplete="off">
+                                    </div>
+                                    &nbsp;
+                                    <div class="form-group">
+                                      <label>Fecha máxima:</label>&nbsp;
+                                      <input name="max" id="max" type="text" autocomplete="off">
+                                    </div>
+
+                                </div>
+                              </div>
+                        
+        
+                    <br>
+
+                    <table width="100%" class="table" id="example" cellspacing="0" style="width:100%">
+                            <thead>
+                                    <tr>
+                                        <th>Código de Emisión</th>
+                                        <th>Código de barrera</th>
+                                        <th>Nombre de la Barrera</th>
+                                        <th>Entidad</th>
+                                        <th>Fecha</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                            <tr *ngIf="loading">
+                                                    <td colspan="4" style="text-align:center;"> <img src="assets/imagenes/loader-service.gif" /></td>
+                                                </tr>
+                                            <tr *ngFor="let item of nuevosRegistrosDos">
+                                                    <td>{{item.cod_doc_emision}}</td>
+                                                    <td>{{item.codigo_obstaculo}}</td>
+                                                    <td>{{item.obstaculo}}</td>
+                                                    <td>{{item.nombre_entidad}}</td>
+                                                    <td>{{item.fecha_historial | date: 'dd/MM/yyyy'}}</td>
+                                                    <td><a routerLink="/detalleAdministrativoRespuesta/{{item.id_obstaculo}}" class="btn btn-danger">Respuesta</a></td>
+                                                </tr>
+                                            </tbody>
+
+                    </table>
+               
+                </tab>
+        
+                <tab heading="Historial">
+                    <br>
+                    <table datatable class="table" style="width:100%" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código de barrera</th>
+                                <th scope="col">Nombre de la Barrera</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="loading">
+                                <td colspan="4" style="text-align:center;"> <img src="assets/imagenes/loader-service.gif" /></td>
+                            </tr>
+                            <tr *ngFor="let item of listaHistorial">
+                                <td>{{item.codigo_obstaculo}}</td>
+                                <td>{{item.obstaculo}}</td>
+                                <td>{{item.fecha_respuesta | date: 'dd/MM/yyyy'}}</td>
+                                <td><a routerLink="/detalleAdministrativoHistorial/{{item.id_obstaculo}}" class="btn btn-danger">Ver detalle</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tab>
+        
+            </tabset>
+        
+        </div>
+        
+        <br>
+        <br>

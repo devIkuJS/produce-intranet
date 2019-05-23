@@ -1,0 +1,367 @@
+<ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                    Cargando datos...
+                </h3>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading1" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Información del caso</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row form-horizontal">
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Código de registro:</label>
+                                        <div class="col-md-10">
+                                            <input type="text" [(ngModel)]="codigoregistro" name="codigoregistro" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Trámite/Servicio/Otra gestión :</label>
+                                        <div class="col-md-10">
+                                            <div class="styled-select clearfix">
+                                                <textarea [(ngModel)]="tramiteusuario" name="tramiteusuario" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Explicación :</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="explicaciondata" name="explicaciondata" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Descargar archivo :</label>
+                                        <div class="col-md-10">
+                                            <button type="button" class="btn btn-danger">Click aqui para descargar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Consulta Usuario:</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="consultaPrincipal" name="consultaPrincipal" class="form-control" readonly [attr.disabled]="isDisabledOptions" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Respuesta Usuario:</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="respuestaPrincipal" name="respuestaPrincipal" class="form-control" readonly [attr.disabled]="isDisabledOptions" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Información del caso</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row form-horizontal">
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Código de la Barrera:</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" [(ngModel)]="codigoObstaculo" name="codigoObstaculo" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Región:</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" [(ngModel)]="nombre_region" name="nombre_region" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Barrera Administrativa:</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" [(ngModel)]="nombreObstaculo" name="nombreObstaculo" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Actividad Económica :</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" [(ngModel)]="actividadeconomica" name="actividadeconomica" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;" *ngIf="isProduceRegistro">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Órgano/Unidad Orgánica/Organismo
+                                            <br>/Programa :</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" [(ngModel)]="nombre_organismo" name="nombre_organismo" readonly [attr.disabled]="isDisabledOptions">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top:25px;" *ngIf="!isProduceRegistro">
+                                        <div class="form-group">
+                                           <label class="col-md-2 control-label">Entidad :</label>
+                                           <div class="col-md-10">
+                                            <input type="text"  class="form-control" [(ngModel)]="nombrentidad" name="nombrentidad" readonly [attr.disabled]="isDisabledOptions">
+                                         </div>
+                                        </div>
+                                     </div>
+                                <h4 style="margin-top:140px;margin-bottom:34px;margin-left: 32px;"><strong>Identificación :</strong></h4>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Existe acto o disposición de la entidad:</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="actoEntidad" name="actoEntidad" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top: 25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Es una transgresión a los principios y normas de simplificación administrativa:</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="transgresion" name="transgresion" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Limita la libertad de tránsito :</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="limitalibertad" name="limitalibertad" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top: 25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Existe perjuicio :</label>
+                                        <div class="col-md-10">
+                                            <textarea [(ngModel)]="perjuicio" name="perjuicio" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top: 25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Categoría a la que pertenece BA:</label>
+                                        <div class="col-md-10">
+                                            <input type="text" [(ngModel)]="categoriaBA" name="categoriaBA" class="form-control" readonly [attr.disabled]="isDisabledOptions" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 style="margin-top:440px;margin-bottom:34px;margin-left: 32px;"><strong>Condiciones para barrera burocrática :</strong></h4>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top: 25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Ilegal :</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" [(ngModel)]="ilegal" name="ilegal" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top: 25px;margin-bottom:25px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Carente de Razonabilidad :</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" [(ngModel)]="razonabilidad" name="razonabilidad" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group row" style="margin-bottom:0px">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="panel panel-default panelIdentificationRevisar">
+                                                <div class="panel-heading clearfix">
+                                                    <i class="icon-calendar"></i>
+                                                    <h3 class="panel-title">Comentario del equipo de la plataforma respecto a la barrera detectada para las dependencias del SP</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="col-lg-12 col-sm-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                                                            <textarea class="form-control" rows="5" [(ngModel)]="comentarioDependencia" name="comentarioBarrera" readonly [attr.disabled]="isDisabledOptions">
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="isProduceRegistro">
+                                            <div class="panel panel-default panelIdentificationRevisar">
+                                                <div class="panel-heading clearfix">
+                                                    <i class="icon-calendar"></i>
+                                                    <h3 class="panel-title">Respuesta de la dependencia del SP respecto a la detección de la barrera</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="col-lg-12 col-sm-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                                                            <textarea class="form-control" rows="5" [(ngModel)]="respuestaDependencia" name="respuestaDependencia" readonly [attr.disabled]="isDisabledOptions">
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Evaluación final de la barrera detectada</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <h3 style="text-align:center">¿Es barrera administrativa?</h3>
+                                <p style="text-align:center">
+                                    <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="aceptarBarreraAdmin" name="aceptarBarreraAdmin" value="1" [disabled]="disabledRadio"> Si acepto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label class="radio-inline" style="margin-left:13px">
+                                        <input type="radio" [(ngModel)]="aceptarBarreraAdmin" name="aceptarBarreraAdmin" value="0" [disabled]="disabledRadio"> No acepto
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <h3 style="text-align:center">¿Indicio de barrera burocrática?</h3>
+                                <p style="text-align:center">
+                                    <label class="radio-inline">
+                                        <input type="radio" [(ngModel)]="aceptarBarreraBuro" name="aceptarBarreraBuro" value="1" [disabled]="disabledRadio"> Si acepto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label class="radio-inline" style="margin-left:13px">
+                                        <input type="radio" [(ngModel)]="aceptarBarreraBuro" name="aceptarBarreraBuro" value="0" [disabled]="disabledRadio"> No acepto
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                                        <textarea [(ngModel)]="sustento" name="sustento" placeholder="Ingrese el sustento de evaluacion" class="form-control" rows="5" [disabled]="disabledCampos">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-sm-12 col-sx-12" style="margin-top: 25px;margin-bottom:25px;">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Adjuntar sustento (Opcional) (Archivo , solo formato PDF):</label>
+                                    <div class="col-md-10">
+                                        <input id="loadInputData" type="file" accept=".pdf" [disabled]="disabledCampos">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-lg-12 col-sm-12">
+                                    <h3 class="panel-title"><strong>Respuesta al Usuario :</strong></h3>
+                                    <br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                                        <textarea [(ngModel)]="resumenUsuario" name="resumenUsuario" placeholder="Indicar el sustento si es barrera administrativa , barrera burocrática o no es barrera" class="form-control" rows="5" [disabled]="disabledCampos">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-lg-12 col-sm-12">
+                                    <h3 class="panel-title"><strong>Medidas a tomar :</strong></h3>
+                                    <br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                                        <textarea [(ngModel)]="solucionUsuario" name="solucionUsuario" placeholder="Medidas a tomar cuando es una BA" class="form-control" rows="5" [disabled]="disabledCampos">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default panelIdentificationRevisar">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Condición de la BA: seleccionado por (evaluador)</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-12 col-sm-12" style="margin-bottom:30px;">
+                                <div>
+                                    <label class="radio-inline" *ngFor="let item of listaCondicionBA">
+                                        <input type="radio" value="{{item.id_condicion}}" [(ngModel)]="condicionBA" name="condicionBA" [disabled]="disabledCampos">{{item.nombre_condicion}}
+                                    </label>
+                                </div>
+                                <br>
+                                <br>
+                                <h3 class="panel-title"><strong>Sustento de condición de la BA :</strong></h3>
+                                <br>
+                                <div class="col-lg-12 col-sm-12" style="margin-bottom:20px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                                        <textarea [(ngModel)]="sustentocondicion" name="sustentocondicion" class="form-control" rows="5" [disabled]="disabledCampos">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <h3 class="panel-title"><strong>Compromiso con plazos de tiempo</strong></h3>
+                                <br>
+                                <div class="form-inline" style="width:30%;">
+                                    <input type="text" class="form-control" [(ngModel)]="tiempocompromiso" name="tiempocompromiso" maxlength="5" [disabled]="disabledCampos">
+                                    <label>&nbsp;&nbsp;Días</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px;margin-bottom:20px">
+            <p style="text-align:center">
+                <button class="btn btn-danger btn-lg" (click)="descargarPDF()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Descargar Evaluacion en PDF </button>
+            </p>
+        </div>
+    </div>

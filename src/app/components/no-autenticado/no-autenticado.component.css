@@ -1,0 +1,15 @@
+#containerNoAuth{
+    text-align: center;
+    height: 500px;
+}
+
+#containerNoAuth h1{
+    margin-top: 200px;
+    font-family: "WorkSans-Bold", Helvetica, Arial, sans-serif;
+
+}
+
+#containerNoAuth h5{
+    font-family: "WorkSans-Regular", Helvetica, Arial, sans-serif;
+
+}

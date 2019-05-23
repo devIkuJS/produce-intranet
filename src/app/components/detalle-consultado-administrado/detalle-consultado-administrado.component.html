@@ -1,0 +1,162 @@
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">
+        <h3>
+            Cargando datos...
+        </h3>
+    </div>
+</ng-template>
+<ngx-loading [show]="loading1" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<div class="container">
+  <div id="showAlertTrabaResponse"></div>
+  <!-- FASE CLASIFICADO COORDINADOR -->
+   <div>
+
+  <div class="row">
+     <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default panelIdentificationRevisar">
+           <div class="panel-heading clearfix">
+              <i class="icon-calendar"></i>
+              <h3 class="panel-title">Información de la Barrera</h3>
+           </div>
+           <div class="panel-body">
+              <div class="row form-horizontal">
+                <div class="col-lg-12 col-sm-12 col-sx-12">
+                   <div class="form-group">
+                      <label class="col-md-2 control-label">Código de registro:</label>
+                      <div class="col-md-10">
+                         <input type="text" [(ngModel)]="codigoregistro" name="codigoregistro" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                      </div>
+                   </div>
+                </div>
+                 <div class="col-lg-12 col-sm-12 col-sx-12">
+                    <div class="form-group">
+                       <label class="col-md-2 control-label">Trámite/Servicio/Otra gestión :</label>
+                       <div class="col-md-10">
+                          <textarea [(ngModel)]="tramitedata" name="tramitedata" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-12 col-sm-12 col-sx-12">
+                    <div class="form-group">
+                       <label class="col-md-2 control-label">Explicación :</label>
+                       <div class="col-md-10">
+                          <textarea [(ngModel)]="explicaciondata" name="explicaciondata" class="form-control" readonly [attr.disabled]="isDisabledOptions"></textarea>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-12 col-sm-12 col-sx-12">
+                    <div class="form-group">
+                       <label class="col-md-2 control-label">Descargar archivo :</label>
+                       <div class="col-md-10">
+                         <button type="button" class="btn btn-danger">Click aqui para descargar</button>
+                      </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-12 col-sm-12 col-sx-12">
+                    <div class="form-group">
+                       <label class="col-md-2 control-label">Entidad :</label>
+                       <div class="col-md-10">
+                          <input type="text" [(ngModel)]="entidaddata" name="entidaddata" class="form-control" readonly [attr.disabled]="isDisabledOptions">
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-12 col-sm-12 col-sx-12" *ngIf="!isProduceRegistro">
+                    <div class="form-group">
+                       <label class="col-md-2 control-label">Órgano/Unidad Orgánica/Organismo/ Programa :</label>
+                       <div class="col-md-10">
+                          <input type="text" [(ngModel)]="organoData" name="organoData" class="form-control"  [attr.disabled]="isDisabledOptionsOrgano">
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-4 col-sm-4 col-sx-4">
+                    <div class="form-group">
+                       <label class="col-md-4 control-label">Región :</label>
+                       <div class="col-md-8">
+                          <input type="text" [(ngModel)]="regionData" name="regionData" class="form-control" readonly  [attr.disabled]="isDisabledOptions">
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-4 col-sm-4 col-sx-4">
+                    <div class="form-group">
+                       <label class="col-md-4 control-label">Provincia :</label>
+                       <div class="col-md-8">
+                          <input type="text" [(ngModel)]="provinciaData" name="provinciaData" class="form-control" readonly  [attr.disabled]="isDisabledOptions">
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-4 col-sm-4 col-sx-4">
+                    <div class="form-group">
+                       <label class="col-md-4 control-label">Distrito :</label>
+                       <div class="col-md-8">
+                          <input type="text" [(ngModel)]="distritoData" name="distritoData" class="form-control" readonly  [attr.disabled]="isDisabledOptions">
+                       </div>
+                    </div>
+                 </div>
+                 
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default panelIdentificationRevisar">
+           <div class="panel-heading clearfix">
+              <i class="icon-calendar"></i>
+              <h3 class="panel-title">Consulta del Evaluador </h3>
+           </div>
+
+           <div class="panel-body">
+           <!--  <form (submit)="enviarConsulta()"> -->
+              <div class="row">
+
+                  <label class="col-md-8 control-label">Consultas para el usuario :</label>
+                   <div class="col-md-12" style="margin-top:20px;margin-bottom:20px;">                             
+                      <textarea  class="form-control" [(ngModel)]="consultaAdministrado" name="consultaAdministrado" rows="3" [disabled]="disabledConsultaUsuario" ></textarea>
+                   </div>
+                    <div *ngIf="isUsuarioRespondio">
+                   <label class="col-md-8 control-label">Respuestas del usuario :</label>
+                   <div class="col-md-12" style="margin-top:20px;margin-bottom:20px;">                             
+                    <!--  <textarea  class="form-control" [(ngModel)]="consultaAdministrado" name="consultaAdministrado" rows="3" [disabled]="consultaDisabled" ></textarea> -->
+                    <textarea  class="form-control" [(ngModel)]="respuestaAdministrado" name="respuestaAdministrado" rows="3" [disabled]="consultaDisabled" ></textarea>
+                   </div>
+                  </div>
+                  <div class="col-md-12" *ngIf="botonAdministrado" >                             
+                      <div class="row">
+                      <p style="text-align:center">
+                        <button class="btn btn-danger btn-lg" (click)="enviarConsultaUsuario()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Enviar a Usuario</button> 
+                         </p>
+                       </div>
+                 </div>
+
+                   <div class="col-md-12" *ngIf="botonEvaluador">                             
+                      <div class="row">
+                      <p style="text-align:center">
+                        <button class="btn btn-danger btn-lg" (click)="enviarEvaluador()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Enviar a Evaluador</button> 
+                         </p>
+                       </div>
+                 </div>
+
+                 <div class="col-md-12" *ngIf="botonFase9">                             
+                  <div class="row">
+                  <p style="text-align:center">
+                    <button class="btn btn-danger btn-lg" (click)="enviarNoRespondio()"><i class="fa fa-floppy-o" aria-hidden="true"></i> No respondió</button> 
+                     </p>
+                   </div>
+             </div>
+
+
+              </div>
+             <!-- </form> -->
+           </div>
+        </div>
+     </div>  
+  </div>
+
+
+  </div>
+
+</div>
+

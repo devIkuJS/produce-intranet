@@ -1,0 +1,29 @@
+<div class="container">
+
+  <div class="row" style="text-align:center">
+    <button class="btn btn-primary" (click)="coordinador()">Generar Coordinador</button>
+    <button class="btn btn-primary" style="margin-left:5px;" (click)="evaluador()">Generar Evaluador</button>
+    <button class="btn btn-primary" style="margin-left:5px;" (click)="representante()">Generar Consultado</button>
+    <button class="btn btn-primary" style="margin-left:5px;" (click)="administrativo()">Generar Administrativo</button>
+    <button class="btn btn-danger" style="margin-left:5px;" (click)="logout()">Eliminar Sesion</button>
+  </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" id="" value="{{cookieEmail}}" aria-describedby="emailHelp" placeholder="Email actual">
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="email" class="form-control" value="{{cookieNombre}}" placeholder="Nombre actual">
+      </div>
+      <div class="form-group">
+        <label>tipo</label>
+        <input type="email" class="form-control" value="{{cookieTipo}}" placeholder="Tipo actual">
+      </div>
+
+      <br>
+        <br>
+    
+
+</div>
+
