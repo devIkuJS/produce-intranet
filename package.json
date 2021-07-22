@@ -40,7 +40,7 @@
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sweetalert2": "^7.28.8",
-    "xlsx": "^0.14.1",
+    "xlsx": "^0.17.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
